@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BookStore.Models
+namespace BookStore.WEB.Models
 {
     public class Autor
     {
