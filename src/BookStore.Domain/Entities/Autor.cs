@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BookStore.WEB.Models
+namespace BookStore.Domain.Entities
 {
     public class Autor
     {
@@ -8,8 +8,10 @@ namespace BookStore.WEB.Models
         {
             this.Livros = new List<Livro>();
         }
+
         public int Id { get; set; }
         public string Nome { get; set; }
+
         public ICollection<Livro> Livros { get; set; }
     }
 }
