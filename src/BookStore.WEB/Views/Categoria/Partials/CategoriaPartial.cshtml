@@ -1,0 +1,16 @@
+﻿@model BookStore.WEB.ViewModels.Categoria.CategoriaViewModel
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+<form>
+    <div class="container-fluid">
+        <div class="col-md-6 mb-3">
+            @Html.LabelFor(x => x.Nome)
+            <input type="text" class="form-control" id="firstName" placeholder="" value="@Model.Nome" required="">
+            <div class="invalid-feedback">
+               Nome é obrigatório
+            </div>
+        </div>
+    </div> 
+</form>

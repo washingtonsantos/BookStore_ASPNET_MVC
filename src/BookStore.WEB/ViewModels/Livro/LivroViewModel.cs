@@ -1,12 +1,13 @@
-﻿using BookStore.Domain.Entities;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace BookStore.WEB.ViewModels.Livro
 {
-    public class CriarLivroViewModel
+    public class LivroViewModel
     {
+        public int Id { get; set; }
+
         [Required(ErrorMessage = "*")]
         [Display(Name = "Nome do Livro")]
         public string Nome { get; set; }
@@ -26,6 +27,6 @@ namespace BookStore.WEB.ViewModels.Livro
 
         [Required(ErrorMessage = "*")]
         [Display(Name = "Categorias")]
-        public List<Categoria> Categorias { get; set; }
+        public SelectList Categorias { get; set; }
     }
 }

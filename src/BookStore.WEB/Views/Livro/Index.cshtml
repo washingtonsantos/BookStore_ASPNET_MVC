@@ -1,0 +1,24 @@
+﻿@model IList<BookStore.WEB.ViewModels.Livro.LivroViewModel>
+
+@{
+    ViewData["Title"] = "Livros";
+}
+
+<div class="row">
+    <h4 class="col-10">Livros</h4>
+    <button class="btn btn-success float-right btn-sm mb-1" onclick="location.href='@Url.Action("Create", "Livro")';return false;">
+        + NOVO
+    </button>
+</div>
+
+<div>
+    @using (Html.BeginForm())
+    {
+        @Html.Partial("Partials/ListarLivrosPartial")
+    }
+</div>
+
+
+
+
+

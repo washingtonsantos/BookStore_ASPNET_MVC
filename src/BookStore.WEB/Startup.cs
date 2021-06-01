@@ -1,4 +1,6 @@
-using BookStore.WEB.Context;
+using BookStore.Data.Contexto;
+using BookStore.Data.Repositorios;
+using BookStore.Domain.Interfaces.Repositorio;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -20,9 +22,16 @@ namespace BookStore.WEB
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<BookStoreDataContext>(options =>
-                                   options.UseSqlServer(Configuration.GetConnectionString("BookStoreConnectionString")));
+            services.AddDbContext<BookStoreContexto>(options =>
+                                   options.UseSqlServer(Configuration.GetConnectionString("BookStoreConnectionString"),
+                                   x => x.MigrationsAssembly("BookStore.WEB")));
+
             services.AddControllersWithViews();
+
+            services.AddScoped<IAutorRepositorio, AutorRepositorio>();
+            services.AddScoped<ICategoriaRepositorio, CategoriaRepositorio>();
+            services.AddScoped<ILivroRepositorio, LivroRepositorio>();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

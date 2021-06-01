@@ -1,7 +1,40 @@
-﻿
+﻿@model IList<BookStore.Domain.Entities.Autor>
+
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Autor";
 }
 
-<h1>Index</h1>
+<div class="container-fluid">
+
+    <div class="row">
+        <h4 class="col-10">Autor</h4>
+        <button class="btn btn-success btn-sm mb-1">
+            + NOVO
+        </button>
+    </div>
+
+
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nome</th>
+                </tr>
+            </thead>
+            @foreach (var autor in Model)
+            {
+                <tbody>
+                    <tr>
+                        <td>@autor.Id</td>
+                        <td>@autor.Nome</td>
+                    </tr>
+                </tbody>
+            }
+        </table>
+    </div>
+</div>
+
+
+
 

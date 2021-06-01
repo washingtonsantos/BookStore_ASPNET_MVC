@@ -1,0 +1,23 @@
+﻿@model BookStore.WEB.ViewModels.Livro.LivroViewModel
+
+@{
+    ViewData["Title"] = "Editando o livro...";
+}
+
+<div class="row">
+    <h4 class="col-10">Editar</h4>
+    <button type="button" class="btn btn-secondary btn-sm mb-1" onclick="location.href='@Url.Action("INDEX", "Livro")'" ; return false;">
+        < VOLTAR
+    </button>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(x => x.Id)
+
+    @Html.Partial("Partials/LivroPartial", Model)
+    <button type="submit" class="btn btn-primary">Salvar</button>
+
+}
+
+

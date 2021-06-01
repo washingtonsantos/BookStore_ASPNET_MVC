@@ -8,7 +8,7 @@ namespace BookStore.WEB.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Autor",
+                name: "Autores",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -17,40 +17,40 @@ namespace BookStore.WEB.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Autor", x => x.Id);
+                    table.PrimaryKey("PK_Autores", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Categoria",
+                name: "Categorias",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nome = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false)
+                    Nome = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Categoria", x => x.Id);
+                    table.PrimaryKey("PK_Categorias", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Livro",
+                name: "Livros",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nome = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     ISBN = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    DataLancamento = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DataLancamento = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CategoriaId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Livro", x => x.Id);
+                    table.PrimaryKey("PK_Livros", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Livro_Categoria_CategoriaId",
+                        name: "FK_Livros_Categorias_CategoriaId",
                         column: x => x.CategoriaId,
-                        principalTable: "Categoria",
+                        principalTable: "Categorias",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -66,15 +66,15 @@ namespace BookStore.WEB.Migrations
                 {
                     table.PrimaryKey("PK_AutorLivro", x => new { x.AutoresId, x.LivrosId });
                     table.ForeignKey(
-                        name: "FK_AutorLivro_Autor_AutoresId",
+                        name: "FK_AutorLivro_Autores_AutoresId",
                         column: x => x.AutoresId,
-                        principalTable: "Autor",
+                        principalTable: "Autores",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_AutorLivro_Livro_LivrosId",
+                        name: "FK_AutorLivro_Livros_LivrosId",
                         column: x => x.LivrosId,
-                        principalTable: "Livro",
+                        principalTable: "Livros",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -85,8 +85,8 @@ namespace BookStore.WEB.Migrations
                 column: "LivrosId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Livro_CategoriaId",
-                table: "Livro",
+                name: "IX_Livros_CategoriaId",
+                table: "Livros",
                 column: "CategoriaId");
         }
 
@@ -96,13 +96,13 @@ namespace BookStore.WEB.Migrations
                 name: "AutorLivro");
 
             migrationBuilder.DropTable(
-                name: "Autor");
+                name: "Autores");
 
             migrationBuilder.DropTable(
-                name: "Livro");
+                name: "Livros");
 
             migrationBuilder.DropTable(
-                name: "Categoria");
+                name: "Categorias");
         }
     }
 }
